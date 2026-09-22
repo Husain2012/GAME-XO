@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="لعبة XO أونلاين مع أصدقائك" />
+    <title>XO Arena | لعب أونلاين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="XO Arena">XO<span>•</span></a>
+        <div class="connection"><i></i><span id="connectionText">متصل بالخادم</span></div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">غرفة لعب خاصة</p>
+          <h1>جاهز للجولة؟</h1>
+          <p class="lede">أنشئ غرفة، أرسل الرمز لصديقك، وابدأ المعركة في ثوانٍ.</p>
+        </div>
+        <div class="hero-mark" aria-hidden="true"><span>×</span><b>○</b></div>
+      </section>
+
+      <section class="lobby" id="lobbyView">
+        <div class="panel create-panel">
+          <div class="panel-label">01 <span>ابدأ غرفة جديدة</span></div>
+          <h2>أنت تختار X</h2>
+          <label for="createName">اسمك</label>
+          <input id="createName" maxlength="20" placeholder="مثلاً: أحمد" autocomplete="nickname" />
+          <button class="primary" id="createBtn">إنشاء غرفة <span>←</span></button>
+        </div>
+        <div class="or-line"><span>أو</span></div>
+        <div class="panel join-panel">
+          <div class="panel-label">02 <span>انضم إلى صديق</span></div>
+          <h2>أنت تختار O</h2>
+          <label for="joinName">اسمك</label>
+          <input id="joinName" maxlength="20" placeholder="مثلاً: سارة" autocomplete="nickname" />
+          <label for="roomCode">رمز الغرفة</label>
+          <input class="code-input" id="roomCode" maxlength="5" placeholder="ABCDE" autocomplete="off" />
+          <button class="secondary" id="joinBtn">انضمام للغرفة <span>←</span></button>
+        </div>
+      </section>
+
+      <section class="game-view hidden" id="gameView">
+        <div class="game-head">
+          <div><p class="eyebrow">الغرفة <strong id="roomCodeDisplay">-----</strong></p><h2 id="gameTitle">بانتظار اللاعب الثاني</h2></div>
+          <button class="icon-button" id="copyBtn" title="نسخ رمز الغرفة" aria-label="نسخ رمز الغرفة">⧉</button>
+        </div>
+        <div class="players"><div class="player active" id="playerX"><span class="player-mark x">X</span><span id="playerXName">أنت</span></div><div class="vs">VS</div><div class="player" id="playerO"><span class="player-mark o">O</span><span id="playerOName">بانتظار لاعب</span></div></div>
+        <div class="turn-banner" id="turnBanner">شارك رمز الغرفة مع صديقك</div>
+        <div class="board" id="board" aria-label="لوحة XO"></div>
+        <div class="game-actions"><button class="secondary" id="resetBtn">جولة جديدة</button><button class="text-button" id="leaveBtn">مغادرة الغرفة</button></div>
+      </section>
+
+      <p class="notice" id="notice" role="status"></p>
+      <footer>XO ARENA <span>•</span> لعب سريع، بدون تسجيل</footer>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
